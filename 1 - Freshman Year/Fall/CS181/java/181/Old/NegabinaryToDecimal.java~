@@ -1,0 +1,40 @@
+/*
+a;wuebgiawubgiawg header stuff
+
+
+
+
+ */
+
+public class NegabinaryToDecimal{
+
+    public static void main(String[] args){
+	String negabinary = args[0];
+	//	System.out.println(Negabinary);
+
+	int decimalResult = 0;
+
+	int x = 0;
+	int exponent = 0;
+	int negaValue = 0;
+	int digitValue = 0;
+
+
+	for(int i = negabinary.length() - 1; i >=0; i--;)
+	    {
+		x = Integer.parseInt(negabinary.charAt(i));
+		exponent = (negabinary.length() - 1) - i;
+		negaValue = Math.pow((double)-2, (double)exponent);
+		digitValue = x*negaValue.
+
+		decimalResult += digitValue;
+	    }
+
+	System.out.println(decimalResult);
+
+    }
+
+
+
+
+}

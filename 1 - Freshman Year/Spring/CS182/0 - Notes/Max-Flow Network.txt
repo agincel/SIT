@@ -1,0 +1,42 @@
+Max-Flow Network
+
+Use Flow on edges such that flow <= weight of edge
+
+Maximize Flow from src to dst
+
+Sum of inflow == sum of outflow.
+
+--
+
+Residual Network: any arrow opposite to the original implies leftover of that much.
+
+Ford-Fulkerson
+
+Create residual network. (reverse of everything you have)
+
+findAugmentingPath() //fap algorithm
+
+
+
+unsigned int findAugmentingPath(curr, dst, flow)
+{
+	mark curr as visited
+	if(curr == dst)
+		return flow;
+
+	for(v neighbors of curr)
+		if(V ! visited)
+		{
+			min = minimum(flow, weight(curr, v));
+			if((min = findAP(v, dst, min)) > 0)
+				{
+					ResNet[curr][v] -= min;
+					ResNet[v][curr] += min; //augment the network
+
+
+					return min;
+				}
+		}
+
+}
+

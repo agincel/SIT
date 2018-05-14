@@ -1,0 +1,1 @@
+This repo represents my time as a Computer Science Major and Quantitative Finance Minor at Stevens Institute of Technology. In it are assignments, programs, and notes taken throughout my time at the university.

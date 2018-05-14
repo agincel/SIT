@@ -1,0 +1,17 @@
+NP-Complete Problems
+
+P is contained in NP.
+
+NP complete is a subset of Turing Machines in NP that can be converted into each other in polynomial time. 
+
+Partial solution: steps on the way leading to a candidate solution. If a partial solution will never lead to a candidate solution, you get rid of a whole section of your solutions via pruning. 
+
+Backtracking:
+4_Queen problem.
+
+State-Space tree: what tree holds all states that could lead to an answer.
+
+Board with 0-4 queens
+if < 4 queens "partial state"
+if 4 queens "candidate state"
+

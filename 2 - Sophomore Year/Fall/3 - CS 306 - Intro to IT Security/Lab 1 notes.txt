@@ -1,0 +1,13 @@
+10491
+10488
+
+--
+
+Encrypt Hello with simple shift of 5
+
+Mjqqt
+
+Decrypt IEWC using simple shift of 4
+
+EASY
+

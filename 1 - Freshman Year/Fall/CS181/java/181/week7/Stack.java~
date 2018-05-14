@@ -1,0 +1,27 @@
+/*
+  Adam Gincel
+  Stack.java
+  
+
+
+  I pledge my honor that I have abided by the Stevens Honor System.
+
+ */
+
+public class Stack{
+
+    int stackSize = 0;
+
+    private int[] stack;
+
+    public Stack(int[] s)
+    {
+	stack = int[s.length];
+
+	
+
+
+
+    }
+
+    

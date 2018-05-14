@@ -1,0 +1,256 @@
+Adam Gincel
+I pledge my honor that I have abided by the Stevens Honor System.
+
+Homework 4 Turing Machine Raw Text
+---------------------------------
+
+name: AntiPalindrome Turing Machine
+init: qCopy
+accept: qAccept
+
+qCopy,0,_
+qCopy,0,0,>,>
+
+qCopy,1,_
+qCopy,1,1,>,>
+
+qCopy,_,_
+qReturn,_,_,-,<
+
+qReturn,_,0
+qReturn,_,0,-,<
+
+qReturn,_,1
+qReturn,_,1,-,<
+
+qReturn,_,_
+qTest,_,_,<,>
+
+qTest,0,0
+qReject,0,0,-,-
+
+qTest,1,1
+qReject,1,1,-,-
+
+qTest,0,1
+qTest,0,1,<,>
+
+qTest,1,0
+qTest,1,0,<,>
+
+qTest,_,_
+qAccept,_,_,-,-
+
+
+//----------------------------------
+
+name: Equal 0s and 1s Turing Machine
+init: q0
+accept: qAccept
+
+q0,0,_,_
+q0,0,0,_,>,>,-
+
+q0,1,_,_
+q0,1,_,1,>,-,>
+
+q0,_,_,_
+q1,_,_,_,-,<,<
+
+q1,_,0,1
+q1,_,x,x,-,<,<
+
+q1,_,0,_
+qReject,_,x,_,-,-,-
+
+q1,_,_,1
+qReject,_,_,x,-,-,-
+
+q1,_,_,_
+qAccept,_,_,_,-,-,-
+
+//------------------------------------
+
+name: Reverse String Turing Machine
+init: q0
+accept: qAccept
+
+q0,0 //get to # to prove valid string
+q0,0,>
+
+q0,1
+q0,1,>
+
+q0,_ //only one string??
+qReject,_,-
+
+q0,#
+q1,#,> //write # at end
+
+q1,#
+q1,#,>
+
+q1,0
+q1,0,>
+
+q1,1
+q1,1,>
+
+q1,_
+qLeft,#,<
+
+qLeft,0
+qLeft,0,<
+
+qLeft,1
+qLeft,1,<
+
+qLeft,#
+qLeft,#,<
+
+qLeft,_
+q3,_,>
+
+q3,0
+q4,x,>
+
+q3,1
+q5,x,>
+
+q3,#
+qClean,_,<
+
+//q4 means moving a 0 to the end
+q4,0
+q4,0,>
+
+q4,1
+q4,1,>
+
+q4,#
+q4,#,>
+
+q4,_
+qReset,0,<
+
+//q5 means moving a 1 to the end
+q5,0
+q5,0,>
+
+q5,1
+q5,1,>
+
+q5,#
+q5,#,>
+
+q5,_
+qReset,1,<
+
+qReset,0
+qReset,0,<
+
+qReset,1
+qReset,1,<
+
+qReset,#
+qReset,#,<
+
+qReset,x
+q3,x,>
+
+qClean,x
+qClean,_,<
+
+qClean,_
+qReachString,_,>
+
+qReachString,_
+qReachString,_,>
+
+qReachString,0
+qAccept,0,-
+
+qReachString,1
+qAccept,1,-
+
+//------------------------
+
+name: Coin Flip
+init: q0
+accept: qAccept
+
+q0,H //scan right for H
+q1,x,>
+
+q0,T
+q0,T,>
+
+q0,x
+q0,x,>
+
+q1,H //flip right adjacent
+q2,T,<
+
+q1,T
+q2,H,<
+
+q1,x
+q2,x,<
+
+q1,_
+q2,_,<
+
+q2,x //move one left, guaranteed x
+q3,x,<
+
+q3,H //flip left adjacent
+qReset,T,-
+
+q3,T
+qReset,H,-
+
+q3,x
+qReset,x,-
+
+q3,_
+qReset,_,-
+
+qReset,H //get back to beginning
+qReset,H,<
+
+qReset,T
+qReset,T,<
+
+qReset,x
+qReset,x,<
+
+qReset,_
+qCheck,_,>
+
+qCheck,x //all xs valid
+qCheck,x,>
+
+qCheck,_ //made it boys
+qAccept,_,-
+
+qCheck,T //check if any Hs
+qCanContinue,T,>
+
+qCheck,H //flip this one
+q0,H,-
+
+
+qCanContinue,T
+qCanContinue,T,>
+
+qCanContinue,x
+qCanContinue,x,>
+
+qCanContinue,H
+q0,H,-
+
+qCanContinue,_
+qReject,_,-
+
+
+

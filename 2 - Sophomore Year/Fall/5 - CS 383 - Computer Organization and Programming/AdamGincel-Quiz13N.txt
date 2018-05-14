@@ -1,0 +1,27 @@
+.include "m328Pdef.inc"
+
+main:
+ldi r22, 0x20
+sts 0x0100, r22
+ldi r16, low(RAMEND)
+out spl, r16
+ldi r16, high(RAMEND)
+out sph, r16
+
+ldi r16, $03
+push r16
+ldi r16, $0A
+push r16
+ldi r16, $09
+push r16
+ldi r16, $05
+push r16
+
+pop r16
+out PortB, r16
+pop r16
+out PortB, r16
+pop r16
+out PortB, r16
+pop r16
+out PortB, r16

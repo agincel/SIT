@@ -1,0 +1,12 @@
+{
+  "name": "hw2",
+  "version": "1.0.0",
+  "description": "Contains printShape.js. Homework 2 for CS546.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adam Gincel",
+  "license": "ISC"
+}

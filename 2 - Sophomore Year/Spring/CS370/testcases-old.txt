@@ -1,0 +1,42 @@
+3
+add hello
+find hel
+find x
+
+2
+find hel
+add hello
+
+6
+add hello
+add world
+add helicopter
+find heli
+find h
+find w
+
+3
+add hello
+add hello
+find he
+
+12
+add qwerty
+add qwert
+add qwer
+add qwe
+add qw
+add q
+find q
+find qw
+find qwe
+find qwer
+find qwert
+find qwerty
+
+5
+add hello
+find h
+add helpful
+find he
+find help

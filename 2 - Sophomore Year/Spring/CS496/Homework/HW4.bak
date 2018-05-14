@@ -1,0 +1,19 @@
+#lang racket
+(define counter
+  (let ((local-state 0))
+    (lambda ()
+      (let ((dummy (set! local-state (+ local-state 1))))
+        local-state))))
+
+(define stack
+  (let ((stk '()))
+    (lambda (message)
+      (case message
+        ((empty?) (lambda () (null? stk)))
+        ((push!) (lambda (x)
+                   (set! stk (append (list x) stk))))
+        ((pop!) (lambda (x)
+                  (set! stk (cdr stk))))
+        ((top) (lambda (x)
+                 (car stk)))
+        (else (error "stack: Invalid message" message))))))

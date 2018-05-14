@@ -1,0 +1,181 @@
+- Cygwin
+
+    Cygwin start-up
+    ===============
+
+    Starting up cygwin (the white-background window), actually fires
+    up a handful of processes.  Let's go through some of them, just to
+    fix some terminology.
+
+    The actual white-background window itself is called a terminal:
+    try typing "xterm &" and hitting enter and see what happen.  The
+    commands that you type in the terminal, though, are handled by a
+    separate process---the 'shell'; in our setup, that's called bash.
+    (At the moment, typing "bash &" and hitting enter is not going to
+    be that interesting, though.)  The last important piece is the
+    X-server.  You don't get to see it, except for the 'X' icon that
+    is buried in your system tray.  It is the engine that actually
+    does the work to display the window where other processes like
+    XTerm and Emacs live.  (There are other things up, like
+    cygwin.bat, but you can ignore them for now.)
+    
+    File System
+    ===========
+
+    Getting around.
+    Your interaction with the shell at the moment is mostly to walk
+    around the file system and issue other commands.  The directory
+    where you start when you fire up cygwin is called your 'home'
+    directory.  ('Directories' are often called 'Folders' under
+    Windows.)  You can refer to your home directory using "~/".  You
+    move from one directory to another typing "cd <directory-name>",
+    so you can always go back to your home directory typing "cd ~/", 
+    though in fact, just typing "cd" will also do.
+
+    (Note that file and directory names that contain spaces and other
+    symbols may cause problems.  Try avoid using non-alphanumeric
+    characters: if you have to use them, try surrounding the file or
+    directory name with quotation marks ("), or escaping
+    non-alphanumeric characters with a back-slash (\).)
+
+    Files and directories in the file system can always be named in at
+    least two ways: using absolute pathnames, and using relative
+    pathnames.  
+
+    Absolute pathnames start with a leading "/"; they refer to the
+    so-called 'root' of the file system.  Most of the files and
+    directories that you'll need are under "/home/<user-name>/" so if
+    your username is 'Class2012', most of the things you care about
+    have an absolute pathname that starts with "/home/Class2012/" (in
+    fact, that's your home directory).
+
+    Relative pathnames are relative to the 'working directory'---the
+    last directory to which you "cd"'ed to, or your home directory
+    when you first fire up cygwin).  You can check what's the current
+    directory by typing "pwd" (mnnemonic: 'Print-Working-Directory').
+    The basic form of relative pathnames consists of just mentioning
+    the portion of the pathname that differs from the working
+    directory.  For example, if the working directory is
+    "/home/Class2012", you can go to "/home/Class2012/cs181/java"
+    typing "cd cs181/java".  Note that there is no 'slash' ("/")
+    between "cd " and "cs181/java"---the lack of 'slash' is exactly
+    what differentiates absolute pathnames from relative pathnames.
+ 
+    Besides "~/", two other important nicknames are "." ('dot') ".."
+    ('dot-dot').  These nicknames refers respectively to the 'working
+    directory' (the one that you get typing "pwd"), and the
+    'parent-directory'.  For example, if the working directory is
+    "/home/Class2012/cs181/java", you can go to "/home/Class2012/cs181/"
+    typing "cd ..".  Note that from "/home/Class2012/cs181/java", you
+    can also go directly to, say, "/home", by typing "cd ../../.."
+
+    Looking around.
+    With few exceptions, you need to know the name of the directory
+    you want to switch to before you can issue a "cd" command.  So you
+    need a way to see what's in the working directory, something
+    similar to the MS-DOS "dir" command).  You can use the "ls"
+    command for this (mnemonic: 'LiSting').  
+
+    As with most *nix commands, you can modify the behavior of "ls"
+    using options (aka switches or modifiers).  For example, "ls -l"
+    (switch mnemonic: 'Long') produces a longer (i.e., more detailed)
+    directory listing.  Some useful switches: 
+    
+      -a: (switch mnemonic: 'All')  list all files and directory in
+          the working directory (without this switch, files and/or
+          directory whose name starts with a dot ('.') are not shown)
+      -R: (switch mnemonic: 'Recursively') besides listing the working
+          directory, recursively list all subdirectories.  (Try it
+          from your home directory!)
+      -r: (switch mnemonic: 'Reverse') reverse the entry ordering
+      -t: (switch mnemonic: 'by Time') list the entries so that
+          files/directory that have been visited/modified more
+          recently are up in the listing
+
+    Directory listing can get pretty long, often not fitting in your
+    xterm.  Resizing the XTerm might be an option, but there are two
+    other useful mechanisms to deal with such "flushing" issues.  One
+    way is to press the shift key along with the PgUp key: the XTerm
+    should "roll back" to the previous screen content, and further
+    Sh-PgUp key strokes should bring you further up.
+
+    A more general mechanism is based on the "less" command and the
+    use of 'pipes'.  'Pipes' are powerful inter-process communication
+    mechanism (google for "unix pipes" to learn more).  Here, we just
+    care that if you append "| less" (read: 'pipe less') to an "ls"
+    command, you will get into a screen mode that allows you to scroll
+    up and down using the arrows key.  Try "ls /usr/bin | shell"
+    (Hit Sh-Z twice to exit.)
+        
+    Creating and moving things around.
+    You can create and remove directories under cygwin using the
+    "mkdir" and "rmdir" commands, respectively.  For example, 
+    "mkdir tmp" will create a directory called "tmp" within the
+    working directory (unless a file or directory named 'tmp' is
+    already there).  Note that you can also specify the name of the
+    directory to be created using an absolute pathname.  For example, 
+    "mkdir /home/Class2012/pictures" would create a directory called
+    picture inside the /home/Class2012 directory.  (Note that the
+    command will fail if /home/Class2012 is not a directory.)
+
+    Removing directories with rmdir works only if the target directory
+    is empty.  (This is so you don't accidentally erase a bunch of
+    things at once by mistake.)   Creating file is usually
+    accomplished using a text editor like emacs or as a result of
+    another command (e.g., compiling a Java program into bytecode
+    using "javac" creates a .class file).  Sometime, however, it is
+    useful to create a new copy of an existing file; you can do that
+    with the "cp" command.  For example, "cp notes.txt notes.backup"
+    creates a copy of the file called "notes.txt" into another file
+    called "notes.backup".  The command would fail if no file
+    "notes.txt" exists in the current directory.  (Warning:  this
+    might overwrite the content of "notes.backup" if that files
+    existed already.)  Note that if the target (i.e, the second
+    pathname specified after 'cp') is a directory, then the copy will
+    be created inside that directory.  If instead it is the source
+    (i.e., the first pathname specified after 'cp') to be a directory,
+    then the command will fail, unless you specify the -R
+    ("recursive") switch.
+
+    The "mv" command is similar to the "cp" command, but it "moves"
+    rather than "copies", files.  Here, "moving" may amount to
+    renaming, e.g., "mv notes.txt notes.backup" would rename
+    "notes.txt" into "notes.backup".
+
+    Getting more info.
+    You can get a more detailed description of most commands by using
+    the "man" (mnemonics: "Manual")  command.  E.g., "man cp" would
+    tell you all about the "cp" command, including the possible
+    switches and a description of how they modify 'cp''s behavor.
+
+  - Emacs
+    + Moving around
+      . C-a, C-e, [arrow-keys]
+      . C-[arrow-right], C-[arrow-left], C-[arrow-right],
+        C-[arrow-left], C-[home], C-[end] 
+        (Warning: often broken in text-only mode.)
+      . C-s (mnemonic: 'Search') (you will be prompted to enter the
+        word to search in the minibuffer, at a "I-search" prompt)
+      . C-[space] Mark the current position
+      . C-x C-x Move back to the last marked position
+      . C-u [space] Cycles through all the recently marked positions
+    + Editing text
+      . C-S-- ('Ctrl-underscore') Undo
+      . C-d Delete the next character
+      . C-k Cut ('kill') from here through the end of the line
+      . C-w Cut ('kill') the region between the last marked position
+            and here 
+      . A-w Like C-w, but doesn't delete the region ('copy')
+      . C-y Paste ('yank') the last killed region of text
+      . C-y M-y Paste ('yank') the second-to-last killed region of
+            text (N.B.: pressing M-y multiple times will paste region
+            of text that have been killed further in the past)
+      . M-S-5 ('Alt-%') Query replace: prompt twice in the mini-buffer:
+               first word is what to search, second word (after 'Enter')
+               is the replacement string
+
+
+    + More key bindings: http://www.math.uh.edu/~bgb/emacs_keys.html
+
+
+  - screen (http://www.pixelbeat.org/docs/screen/)

@@ -1,0 +1,6 @@
+(decode-crt (crt (zipper myEncryptedMessage keyME)))
+(I - C A N - N O T - B E L I E V E - T H I S - S E M E S T E R - I S - A L M O S T - O V E R)
+> (decode-crt (crt (zipper MysteryMessage keyWW)))
+
+nemo 
+eva

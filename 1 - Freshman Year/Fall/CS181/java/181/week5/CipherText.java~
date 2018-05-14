@@ -1,0 +1,30 @@
+/*
+  Adam Gincel
+  Cipher Text - takes either 1 or 2 args: 
+
+
+
+
+import java.util.Random;
+byte randomByte = new byte[message.length()];
+new Random().nextBytes(randomByte);
+
+
+ */
+
+public class CipherText{
+
+    public static void main(String[] args)
+    {
+	String message = args[0];
+
+	
+
+
+
+
+
+    }
+    
+
+}

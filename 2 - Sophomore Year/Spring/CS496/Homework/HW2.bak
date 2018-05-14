@@ -1,0 +1,11 @@
+#lang racket
+
+(define-datatype dTree dTree?
+  (leaf-t
+   (datum number?))
+  (node-t
+   (symbol symbol?)
+   (left dTree?)
+   (right dTree?)
+   )
+  )

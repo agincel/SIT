@@ -1,0 +1,25 @@
+#lang eopl
+
+
+(define (p-random modulus a-mult inC seed)
+  (cons seed (next-p-random modulus a-mult inC seed 20)))
+
+(define (next-p-random modulus a-mult inC seed kount)
+   (if (= 0 kount)
+       '()  ;We're making a list of 20 (maybe 21?) numbers, and if we kount to 0 we're done.  
+;And here's our random-creating formula:
+       (cons (modulo (+ (* a-mult seed) inC) modulus) 
+             (next-p-random modulus 
+                           a-mult 
+                           inC 
+                           (modulo (+ (* a-mult seed) inC) modulus) 
+                           (- kount 1)))))
+
+(define (convert number base)
+  (if (= number 0) 
+      '()
+      (cons (modulo number base) (convert (/ number base)))
+      ))
+
+
+  

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Survey</title>
+		<link rel="stylesheet" href="stylesheet.css" />
+		<link href='http://fonts.googleapis.com/css?family=Oswald|Open+Sans' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+		<nav>
+		<ul>
+			<li><a href="Splash.html">Home</a></li>
+			<li><a href="Aboutus.html">About us</a></li>
+			<li><a href="Survey.html">Survey</a></li>
+			<li><a href="Preorder.html">Preorder</a></li>
+		</ul>
+		</nav>
+        
+        <h1>SURVEY</h1>
+	   <img src="Starfruit3transparent.png" alt="Company Logo" id="Logo">
+	   <br><br>
+       <h1 id="surveyheader">CHOOSE THE PARTS WHICH MATTER MOST TO YOU !</h1>
+       <br><br>
+		<form action="submit()" id="Survey">
+            
+            <select name="Processor" onchange="calculate()">
+                <option value="" data-price="0">--Select a Processor--</option>
+                <option value="Snapdragon 800" data-price="175">Qualcomm Snapdragon 810 ($175)</option>
+                <option value="Snapdragon 600" data-price="150">Qualcomm Snapdragon 615 ($150)</option>
+                <option value="Nvidia Tegra 4i" data-price="100">Nvidia Tegra 4i ($100)</option>
+                <option value="Nvidia Tegra 4" data-price="80">Nvidia Tegra 4i ($80)</option>
+                <option value="Apple A8" data-price="75">Apple A8 ($75)</option>
+                <option value="Motorola X8" data-price="70">Motorola X8 ($70)</option>
+            </select>
+            <br><br>
+            
+            <select name="Screen" onchange="calculate()">
+                <option value="" data-price="0">--Select a Screen Size--</option>
+                <option value="5.5" data-price="40">5.5 Inch Display ($40)</option>
+                <option value="4.7" data-price="30">4.7 Inch Display ($30)</option>
+                <option value="4" data-price="25">4 Inch Display ($25)</option>
+            </select>
+            <br><br>
+            
+            <select name="HardDrive" onchange="calculate()">
+                <option value="" data-price="0">--Select a Storage Capacity--</option>
+                <option value="128" data-price="75">128 GB ($75)</option>
+                <option value="64" data-price="50">64 GB ($50)</option>
+                <option value="32" data-price="35">32 GB ($35)</option>
+            </select>
+            <br><br>
+            
+            <select name="RAM" onchange="calculate()">
+                <option value="" data-price="0">--Select quantity of RAM--</option>
+                <option value="4" data-price="65">4 GB RAM ($65)</option>
+                <option value="3" data-price="50">3 GB RAM ($50)</option>
+                <option value="2" data-price="40">2 GB RAM ($40)</option>
+            </select>
+            <br><br>
+            
+            <select name="Battery" onchange="calculate()">
+                <option value="" data-price="0">--Select Battery Capacity--</option>
+                <option value="3000" data-price="25">3000 mAh Battery ($25)</option>
+                <option value="2100" data-price="15">2100 mAh Battery ($15)</option>
+            </select>
+            <br><br>
+            
+            <select name="Camera" onchange="calculate()">
+                <option value="" data-price="0">--Select a Camera--</option>
+                <option value="10" data-price="45">10 MP Camera ($45)</option>
+                <option value="5" data-price="30">5 MP Camera ($30)</option>
+                <option value="2" data-price="10">1 MP Camera ($10)</option>
+            
+            </select>
+            <br><br><br>
+            <input type="submit" id="submitbutton" />
+		</form>
+        <br><br>
+        <p id="price">Budget: $375</p>
+    <script>
+        function calculate(){
+            var processor = document.forms[0].Processor;
+            var selectedProcessor = processor.selectedIndex;
+            var p1 = parseInt(processor[selectedProcessor].getAttribute("data-price"));
+            
+            var screen = document.forms[0].Screen;
+            var selectedScreen = screen.selectedIndex;
+            var p2 = parseInt(screen[selectedScreen].getAttribute("data-price"));
+            
+            var hardDrive = document.forms[0].HardDrive;
+            var selectedHardDrive = hardDrive.selectedIndex;
+            var p3 = parseInt(hardDrive[selectedHardDrive].getAttribute("data-price"));
+            
+            var ram = document.forms[0].RAM;
+            var selectedRAM = ram.selectedIndex;
+            var p4 = parseInt(ram[selectedRAM].getAttribute("data-price"));
+            
+            var battery = document.forms[0].Battery;
+            var selectedBattery = battery.selectedIndex;
+            var p5 = parseInt(battery[selectedBattery].getAttribute("data-price"));
+            
+            var camera = document.forms[0].Camera;
+            var selectedCamera = camera.selectedIndex;
+            var p6 = parseInt(camera[selectedCamera].getAttribute("data-price"));
+            
+            var finalPrice = p1+p2+p3+p4+p5+p6;
+            
+            finalBudget = 375 - finalPrice;
+            document.getElementById("price").textContent = "Budget: $" + finalBudget;
+            document.getElementById("price").style.color = "#399630";
+            document.getElementById("submitbutton").style.border = "1px solid #33842a";
+            document.getElementById("submitbutton").onmouseover=function(){document.getElementById("submitbutton").style.backgroundColor = "#399630"};
+            document.getElementById("submitbutton").onmouseout=function(){document.getElementById("submitbutton").style.backgroundColor = "#36393D"};
+
+            if (finalBudget < 0) {
+                document.getElementById("price").style.color = "#B02B2C";
+                document.getElementById("submitbutton").style.border = "1px solid #B02B2C";
+                document.getElementById("submitbutton").onmouseover=function(){document.getElementById("submitbutton").style.backgroundColor = "#B02B2C"};
+                document.getElementById("submitbutton").onmouseout=function(){document.getElementById("submitbutton").style.backgroundColor = "#36393D"};
+            }
+        }
+    </script>
+    </body>
+</html>

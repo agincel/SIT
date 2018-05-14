@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bar chart</title>
+<meta charset="utf-8">
+<!-- Example based on https://bl.ocks.org/mbostock/3885304 -->
+<!-- Generalized and simplified by Alex Wellerstein, http://vizsociety.org -->
+<style>
+/* the "body" of the window */
+body {
+	padding: 0; margin: 0;
+	font-size: 12pt;
+}
+
+/* axes */
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+/* the info window that has the graph title, description, credits, in it */
+#info {
+	position: absolute;
+	right: 120px;
+	top: 10px;
+	opacity: .9;
+	text-align:right;
+	color: red;
+}
+
+#info h1 {
+	padding: 0; margin: 0;
+	font-weight: normal;
+}
+
+#info p {
+	margin: 0;
+}
+
+
+/* the "bars" of the bar chart */
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+/*style of the pop-up tooltip*/
+#tooltip {
+  position: absolute;
+  display: block;
+  text-align: center;
+	padding-left: 5px;
+	padding-right: 5px;
+  pointer-events: none; /* ignores mouse */
+  border: 1px solid #333;
+  background-color: gray;
+  color: white;
+  z-index: 100;
+}
+
+/* the svg element -- all svg graphs work in here */
+#svg_graph {
+	position: absolute;	top: 0px; bottom: 0px; left: 0px; right: 0px;
+	margin: 0; padding: 0;
+}
+
+/* the div the svg element is created inside */
+#graph {
+	position: absolute; top: 0px; bottom: 0px; left: 0px; right: 0px; /* this just makes it fill the window always */
+}
+
+</style>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script>
+
+//our main function — creates the graph from scratch each time it is run
+//this is a little inefficient — in theory it is reloading the data each time — but the browser should be caching the file
+//if we were really concerned about efficiency we would load all the data into the browser first, then render it
+function init() {
+	var margin = {top: 20, right: 20, bottom: 40, left: 10},
+		width = window.innerWidth*.99, //offset a little bit from window to avoid scrollbars
+		height = window.innerHeight*.98; //ditto -- if you want to leave room at the bottom for a title or something, either change this number or make the height a value like clientHeight - 300
+
+	//this function is passed on to a tooltip that shows up whenever the mouse is over a data point
+	var caption_func =
+		  function(d) {
+		  	  var caption = d["state"] + "<br>"+ d["sterilizations"] + "<br>" + d["region"]; //string of data to show in the tooltip box
+
+			  var rect = screenCoordsForRect(d3.event.target); //this gets the location of the bar the mouse is hovering over
+			  tooltip.html(caption) //set the tooltip box with the text
+				   .style("left", rect.cx-(60/2) + "px") //set the tooltip x location (left)
+				   .style("top", Math.max(2,rect.nw.y-38) + "px"); //set the tooltip y location -- the "max" function means that it can be no less than 2, so it doesn't go off the screen
+			  tooltip.transition().duration(200).style("opacity", 1); //makes the tooltip visible
+		  };
+
+	// Value = translates the "data" (as read by the file) into a "value" understood by the code
+	// Scale = maps the value into a pixel position for the SVG display (usually involves a scale and the setting of a range)
+	//		- for discrete categories (e.g. bar charts) see https://github.com/mbostock/d3/wiki/Ordinal-Scales
+	//		- for continuous categories (e.g. scatterplots, numbers), see https://github.com/mbostock/d3/wiki/Quantitative-Scales
+	// Map   = plugs the display value into the scale value (usually doesn't do much more than that)
+	// Axis  = specifies how the axis should work and where it appears -- see https://github.com/mbostock/d3/wiki/SVG-Axes
+	//			 note: the min/max of the axis is set later, *after* the data is loaded, so that the min/max can be calculated from the data min/max (if you want)
+
+	// setup x
+	var xValue = function(d) { return d["state"];}, // data -> value
+		xScale = d3.scale.ordinal().rangeRoundBands([0,width],.1), // value -> display
+		xMap = function(d) { return xScale(xValue(d));}, // data -> display
+		xAxis = d3.svg.axis().scale(xScale).orient("bottom");
+
+	// setup y
+	var yValue = function(d) { return +d["sterilizations"];}, // data -> value //note: the + before the d[] forces it to be evaluated as a number -- not always needed, but sometimes it is!
+		yScale = d3.scale.linear().range([height, 0]), // value -> display
+		yMap = function(d) { return yScale(yValue(d));}, // data -> display
+		yAxis = d3.svg.axis().scale(yScale).orient("left").ticks(10, ""); //notice that this line defines the ticks as percentages... remove the "%" to make it go back to numbers
+
+	// add the graph canvas to the body of the webpage
+	d3.select("#svg_graph").remove(); //clear any existing svg elements that might be there
+	var svg = d3.select("#graph").append("svg").attr("id","svg_graph");
+	svg.attr("width", width)
+	   .attr("height",height)
+	   .attr("viewBox","-"+margin.left+" -"+margin.top+" "+(width+margin.left+margin.right)+" "+(height+margin.top+margin.bottom)) //this last line makes it resize along with the browser window
+
+	// add the tooltip area to the webpage (it is just a div)
+	d3.select("#tooltip").remove(); //clear any existing tooltip
+	var tooltip = d3.select("body").append("div")
+		.attr("id","tooltip")
+		.style("opacity", 0); //invisible!
+
+	// load data from a CSV file
+	d3.csv("USAtotals.csv", function(error, data) {
+		//this function runs once the data has been received
+
+		//but sometimes there are errors, so we try to account for those
+		if(error) {
+			if(error.status) {
+				alert("Error loading "+error.responseURL+": Error "+error.status+" :"+error.statusText);
+			} else {
+				alert("Error loading data: no error message given. View console for details.");
+			}
+		}
+
+	  // setting axes to minimum and maximum values
+	  // note: d3.min and d3.max will find the minimum and maximum values in the dataset
+	  xScale.domain(data.map(xValue));
+	  yScale.domain([0, d3.max(data, yValue)]);
+
+	  // x-axis setup
+	  svg.append("g")
+		  .attr("class", "x axis")
+		  .attr("transform", "translate(0," + height + ")")
+		  .call(xAxis)
+		.append("text")
+		  .attr("class", "label")
+		  .attr("x", width + 15)
+		  .attr("y", 35)
+		  .style("text-anchor", "end")
+		  .text("Region"); //caption
+
+	  // y-axis setup
+	  svg.append("g")
+		  .attr("class", "y axis")
+		  .call(yAxis)
+		.append("text")
+		  .attr("class", "label")
+		  .attr("transform", "rotate(-90)")
+		  .attr("y", 6)
+		  .attr("dy", ".71em")
+		  .style("text-anchor", "end")
+		  .text("Sterilizations"); //caption
+
+	//draw the bars
+	  svg.selectAll(".bar")
+		  .data(data)
+		.enter().append("rect")
+		  .attr("class", "bar")
+		  .attr("x", function(d) { return xMap(d); })
+		  .attr("width", xScale.rangeBand() * .8)
+		  .attr("y", function(d) { return yMap(d); })
+		  .attr("height", function(d) { return height - yMap(d); })
+		  .on("mouseover", caption_func) //if mouse is over a bar, trigger caption function
+		  .on("mouseout", function(d) { //if mouse leaves a bar, hide the tooltip
+			  tooltip.transition()
+				   .duration(500)
+				   .style("opacity", 0);
+		  });
+
+	});
+}
+//this line tells the page to run the above function with the window loads
+window.onload = init;
+
+//translates a svg rect x,y coordinates into pixel coordinates that can be used with css styles
+//returns an object with nw (northwest), ne, se, sw properties (each of which contains an x and y value), as well as a cx and cy (center x and center y) value
+//...don't modify this! it is magic.
+function screenCoordsForRect(rect){
+	var svg2 = document.querySelector('svg');
+	var pt  = svg2.createSVGPoint();
+	var corners = {};
+	var matrix  = rect.getScreenCTM();
+	pt.x = rect.x.animVal.value;
+	pt.y = rect.y.animVal.value;
+	corners.nw = pt.matrixTransform(matrix);
+	pt.x += rect.width.animVal.value;
+	corners.ne = pt.matrixTransform(matrix);
+	pt.y += rect.height.animVal.value;
+	corners.se = pt.matrixTransform(matrix);
+	pt.x -= rect.width.animVal.value;
+	corners.sw = pt.matrixTransform(matrix);
+	corners.cx = (corners.ne.x - corners.nw.x)/2+corners.nw.x;
+	corners.cy = (corners.nw.y - corners.sw.y)/2+corners.sw.y;
+	return corners;
+}
+
+//resizes the svg to the window whenever the window is resized.
+//but it doesn't resize instantly -- it waits 250 ms to do so, and if you move it in that time,
+//it resets the timer. the goal is to keep it from redrawing the graph a million times while you are resizing the window.
+//this is still a little clunky but it works for our purposes.
+var resizetimer;
+window.onresize = function() {
+	if(resizetimer) clearTimeout(resizetimer);
+	resizetimer = setTimeout(function() { init(); },250);
+}
+</script>
+<body>
+<div id="info">
+	<h1>USA Total Sterilizations by State:</h1>
+	<p>A simple bar graph sample.</p>
+</div>
+<div id="graph"></div>
+</body>
+</html>

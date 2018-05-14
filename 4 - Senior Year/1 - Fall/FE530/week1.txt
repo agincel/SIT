@@ -1,0 +1,25 @@
+derivative - financial contract, value derived from other asset
+	call, put , future
+	black schouls
+
+---
+INTANGIBLE:
+Stock
+Bonds
+Insurance
+Derivatives
+	Options
+	Futures	
+	Forwards (?)
+	CDS (Credit Defined Swap)
+
+TANGIBLE:
+Commodities 
+	precious metals
+	cattle
+	oil
+	water
+	corn
+	wheat
+	etc
+

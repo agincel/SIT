@@ -1,0 +1,48 @@
+1) Risk Identification
+Types
+Market
+	Vol risk
+	Political risk
+	Seasonality Risk
+	Prepayment Risk
+Credit Risk
+	Default risk
+	Rating changes
+	Recovery Rate Risk
+Operational Risk
+	Cybersecurity
+	Insider Trading
+Systemic Risk
+	Failure of the system
+Liquidity Risk
+	Ease or difficulty of asset -> cash
+
+Asset Classes
+Equity
+
+Mortgage Backed Security
+
+Emerging Markets
+	BRICS (uh)
+	FAANG (Facebook Amazon Apple Netflix Google)
+
+	--
+	CDX and Itraxx are CDS indices
+
+2) Risk Measurement - a Chief Risk Officer
+VAR, CVAR
+Term Structure of Statistics
+
+Given a fund, you get told notional, what do you do?
+- identify risk
+- get told Notional, ask people for 5-day VAR/CVAR
+
+3) Risk Management
+Now what?
+Develop a risk-return profile.
+
+3b) Trading Book - a Trader
+	- Hedges
+	VIX - made of ipmlied vols of S&P500 stocks, a VOL index
+
+and now a lot of calculus

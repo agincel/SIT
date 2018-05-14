@@ -1,0 +1,16 @@
+body {
+    padding-top: 50px;
+}
+
+aside h1 {
+    font-size: 26px;
+}
+
+.hints {
+    color: #767676;
+}
+
+.the-result {
+    background: #666;
+    color: #000;
+}

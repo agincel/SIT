@@ -1,0 +1,13 @@
+#lang eopl
+
+
+(define sample '((old new) (borrowed blue) (thing1 thing2) (oneFish twoFish) (redFish blueFish)))
+
+(define author-character '((Doyle Holmes) (Poe Dupin) (Dickens Dodger) (Shakespeare Macbeth) (Shakespeare Lear) (Shakespeare Hamlet) (Twain Finn) (Hugo Valjean) (Shakespeare Romeo) (Shakespeare Juliet) (Tolstoy Karenina) (Dumas Athos) (Dumas Porthos) (Dahl WillyWonka) (Dumas Aramis) (Melville Ahab) (Stevenson Silver) (Christie Marple) (Christie Poirot) (Carroll Alice)))
+
+;Here's a relation with fictional characters as domain and attributes 
+;of those characters as codomain:
+(define character-attributes '((Holmes detective) (Dupin detective) (Macbeth villain) (Lear king) (Hamlet prince) (Dodger rascal) (Finn rascal) (CharlieBucket GoodBoy) (WillyWonka Chocolatier) (valJean hero) (Romeo lover) (Juliet lover) (Macbeth king) (Karenina lover) (Athos musketeer) (Porthos musketeer) (Aramis musketeer) (Ahab captain) (Ahab whaler) (Silver pirate) (Marple detective) (Poirot detective) (Alice dreamer)))
+
+(define not-relation '((1 2 3) (1 2) (4 5) 6))
+(define U '(1 2 3 4 5 6))

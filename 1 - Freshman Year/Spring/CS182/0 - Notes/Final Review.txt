@@ -1,0 +1,10 @@
+B trees pt 2 kinda idk
+
+B trees, sorting files, etc.
+
+
+//
+Dynamic Programming
+	Optimization Problem
+	Principle of Optimality (can solutions to sub problems be used/combined to make a solution)
+	

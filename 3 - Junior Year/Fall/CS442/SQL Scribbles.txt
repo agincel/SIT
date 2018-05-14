@@ -1,0 +1,35 @@
+SELECT MAX(age)
+FROM Student NATURAL JOIN Enrolled NATURAL JOIN Class NATURAL JOIN Faculty
+WHERE fname = "Adam Smith"
+
+SELECT age
+FROM Student
+WHERE age >= ALL(SELECT S.age
+		FROM Student S, Enrolled E, Class C, 		Faculty F
+		WHERE F.fname = "Adam Smith" AND C.fid 		= F.fid AND C.cname = E.cname AND 		E.snum = S.snum)
+
+
+--
+
+SELECT name
+FROM Student
+WHERE NOT EXISTS(
+	SELECT S.name
+	FROM Student S, Enrolled E
+	WHERE E.snum = S.snum)
+
+
+SELECT name
+FROM People
+WHERE age >= 21
+--
+
+SELECT sname
+FROM Student
+WHERE snum IN (SELECT snum
+		FROM Enrolled
+		GROUP BY snum
+		HAVING COUNT(*) >= ALL (SELECT COUNT(*)
+					FROM Enrolled
+					GROUP BY snum));
+

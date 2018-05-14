@@ -1,0 +1,162 @@
+* {
+	margin: 0;
+	border: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #3F4C6B
+}
+
+h1 {
+	text-align: center;
+	color: #FFFFFF;
+	font-family: 'Oswald', sans-serif;
+}
+
+h2 {
+	text-align: center;
+	color: #FFFFFF;
+	font-family: 'Oswald', sans-serif;
+}
+
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+form {
+	text-align: center;
+	border: red;
+}
+
+input {
+	cursor: pointer;
+	padding: 5px 25px;
+	background: #36393D;
+	border: 1px solid #33842a;
+	border-radius: 10px;
+	box-shadow: 0 0 4px rgba(0,0,0, .75);
+	color:#FFFFFF;
+	font-size:1.1em;
+	font-family: 'Open Sans', sans-serif;
+	-webkit-transition: all .1s ease;
+	-moz-transition: all .1s ease;
+	-ms-transition: all .1s ease;
+	-o-transition: all .1s ease;
+	transition: all .1s ease;
+}
+
+input:hover, input:focus {
+	background-color :#399630;
+	box-shadow: 0 0 1px rgba(0,0,0, .75);
+}
+
+input:hover:disabled, input:focus:disabled {
+	background-color :#B02B2C;
+}
+
+nav {
+	width: 100%;
+	float: right;
+	margin: 0 0 3em 0;
+	padding: 0;
+	list-style: none;
+	background-color: #f2f2f2;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	font-family: 'Open Sans', sans-serif;
+}
+
+nav li {
+	list-style-type: none;
+	float: right;
+}
+
+nav li a {
+      display: block;
+      padding: 8px 15px;
+      text-decoration: none;
+      font-weight: bold;
+      color: #069;
+      border-right: 1px solid #ccc;
+}
+
+nav li a:hover {
+      color: #FFFFFF;
+      background-color: #36393D;
+}
+
+#main {
+	overflow: hidden;
+	background-color: #36393D;
+	color: white;
+	margin-left: auto;
+	margin-right: auto;
+	-webkit-column-count: 3;
+	-webkit-column-rule: 2px dotted #33842a;
+	text-align: justify;
+	text-indent: 30px;
+	padding: 30px;
+	padding-left: 20px;
+	padding-right: 20px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+
+#splash {
+	background: #36393D;
+}
+
+#price {
+	color: #399630;
+	text-align: center;
+	font-family: 'Oswald', sans-serif;
+	font-size: 2em;
+}
+
+select {
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	padding: 10px;
+	outline-color: #399630;
+	margin: auto;
+	width: 500px;
+	background: #36393D;
+	color: white;
+}
+
+#surveyheader {
+	background: #36393D;
+}
+
+@media screen and (min-width: 480px) and (max-width: 830px) {
+	#main {
+		-webkit-column-count: 2;
+	}
+	img#Logo {
+		display: none;
+	}
+	select {
+		width: 400px;
+	}
+	#surveyheader {
+		font-size: 1.5em;
+	}
+}
+
+@media screen and (min-width: 0px) and (max-width: 480px) {
+	#main {
+		-webkit-column-count: 1;
+	}
+	img {
+		display: none;
+	}
+	select {
+		width: 300px;
+	}
+	#surveyheader {
+		font-size: 1.3em;
+	}
+}

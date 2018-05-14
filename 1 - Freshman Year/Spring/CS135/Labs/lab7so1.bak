@@ -1,0 +1,9 @@
+#lang eopl
+
+
+(define (digitize n)
+  (if (< n 10)
+      (list n)
+      (append (list (modulo n 10)) (digitize (quotient n 10)))
+      )
+  )

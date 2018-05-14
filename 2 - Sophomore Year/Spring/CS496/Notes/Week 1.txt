@@ -1,0 +1,21 @@
+Week 1
+
+
+ebonelli@stevens.edu
+M 15:00-17:00
+
+Expressions: Atomic or Composite
+
+Atomic - collapses to itself (an int, a boolean, etc) (also called values)
+Composite - collapses to a value, like 5 + 7
+
+Symbols: atomic values that print like identifiers
+Must be preceded with a quote and start with an identifier
+
+> 'a
+'a
+
+> 'hello
+'hello
+
+

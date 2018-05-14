@@ -1,0 +1,8 @@
+#lang eopl
+
+(define (get list-of x)
+  (if (= x 0) 
+      ((car list-of)
+    (get (cdr list-of) (- x 1)))))
+
+(define firstlist '(0 1 2 3 4 5 6))

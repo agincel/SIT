@@ -1,0 +1,158 @@
+<!doctype HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Products</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/public/js/popper.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/public/css/main.css" />
+    <link rel="stylesheet" href="/public/css/all.css" />
+</head>
+
+<body>
+    <header>
+        <h1>Preprosterous Products</h1>
+        <p>Adam Gincel 2017</p>
+    </header>
+    
+    <main id="container">
+        <nav>
+            <ul>
+                <li><a href="#show-1">Shoes for your Booze</a></li>
+                <li><a href="#show-2">Pack Wash</a></li>
+                <li><a href="#show-3">Romantifork</a></li>
+                <li><a href="#show-4">50,000 Sunglasses</a></li>
+                <li><a href="#show-5">Anti-odorizer</a></li>
+                <li><a href="#show-6">gulpgulp.js</a></li>
+                <li><a href="#show-7">A Regular Kitchen Knife</a></li>
+                <li><a href="#show-8">Soundproof-foam-proof-foam</a></li>
+                <li><a href="#show-9">Quadruple-sided Tape</a></li>
+                <li><a href="#show-10">USB-X Cable</a></li>
+                <li><a href="#show-11">Anti-flashlight</a></li>
+            </ul>
+        </nav>
+
+        <section>
+            <article id="show-1" class="card">
+                <img src="public/img/shoesbooze.png" alt="a clipart bottle of xxx with shoes" class="card-img-top" />
+                <h2 class="card-title">Shoes for your Booze</h2>
+                <p class="card-text">Self-transporting alcohol.</p>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="setModal(0)">More Info</button>
+            </article>
+            <article id="show-2" class="card">
+                <img src="public/img/packwash.png" alt="kid with washing machine backpack" class="card-img-top" />
+                <h2 class="card-title">Pack-Wash</h2>
+                <p class="card-text">The cleanest clothes you could ask for, on the go.</p>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="setModal(1)">More Info</button>
+            </article>
+            <article id="show-3" class="card">
+                <img src="public/img/romantifork.png" alt="romantifork" class="card-img-top" />
+                <h2 class="card-title">Romantifork</h2>
+                <p class="card-text">A romantic dining option.</p>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="setModal(2)">More Info</button>
+            </article>
+            <article id="show-4" class="card">
+                <img src="public/img/sunglasses.png" alt="lots of sunglasses" class="card-img-top"/>
+                <h2 class="card-title">50,000 Sunglasses</h2>
+                <p class="card-text">An option for the absentminded.</p>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="setModal(3)">More Info</button>
+            </article>
+            <article id="show-5" class="card">
+                <img src="public/img/antiodorizer.jpg" alt="box with 1 button" class="card-img-top" />
+                <h2 class="card-title">Anti-odorizer</h2>
+                <p class="card-text">A solution to your unending odor issues.</p>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="setModal(4)">More Info</button>
+            </article>
+            <article id="show-6" class="card">
+                <img src="public/img/gulpgulp.png" alt="gulp gulp js" class="card-img-top" />
+                <h2 class="card-title">GulpGulp.js</h2>
+                <p class="card-text">I'm So Meta, Even This Acronym</p>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="setModal(5)">More Info</button>
+            </article>
+            <article id="show-7" class="card">
+                <img src="public/img/knife.jpg" alt="knife" class="card-img-top" />
+                <h2 class="card-title">A Regular Kitchen Knife</h2>
+                <p class="card-text">It chops onions, and more.</p>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="setModal(6)">More Info</button>
+            </article>
+            <article id="show-8" class="card">
+                <img src="public/img/soundproof.jpg" alt="soundproof foam proof foam" class="card-img-top"/>
+                <h2 class="card-title">Soundproof-foam-proof-foam</h2>
+                <p class="card-text">It's foam that's immune to soundproof foam.</p>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="setModal(7)">More Info</button>
+            </article>
+            <article id="show-9" class="card">
+                <img src="public/img/4dtape.png" alt="scotch tape in a tessaract" class="card-img-top" />
+                <h2 class="card-title">Quadruple-sided Tape</h2>
+                <p class="card-text">It's sticky in all four dimensions.</p>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="setModal(8)">More Info</button>
+            </article>
+            <article id="show-10" class="card">
+                <img src="public/img/usbx.png" alt="some weird inexplicable cable monstrosity" class="card-img-top"/>
+                <h2 class="card-title">USB-X Cable</h2>
+                <p class="card-text">The definitive standard to end all standards.</p>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="setModal(9)">More Info</button>
+            </article>
+            <article id="show-11" class="card">
+                <img src="public/img/parasol.png" alt="its just a parasol" class="card-img-top"/>
+                <h2 class="card-title">Anti-Flashlight</h2>
+                <p class="card-text">Save yourself from the sun.</p>
+                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" onclick="setModal(10)">More Info</button>
+            </article>
+        </section>
+
+		<!-- Trigger the modal with a button -->
+		
+
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h2 id="modalTitle" class="modal-title">Modal Header</h2>
+		      </div>
+		      <div id="modalBody" class="modal-body">
+		        <p>Some text in the modal.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+    </main>
+
+    <script type="text/javascript">
+    	$('#myModal').on('shown.bs.modal', function () {
+		  $('#myInput').focus();
+		})
+
+		var info = [
+			{"name": "Shoes for your Booze", "desc": "Ever wanted to drink on the go? Weren't able to carry alcohol on your person? Now you don't have to! Shoes for your Booze is techinically its own autonomous being, making you not liable for any legal issues regarding its transportation."},
+			{"name": "Pack Wash", "desc": "Need those clothes clean, but don't have time to sit at a washing machine? Take it on the go! Pack-Wash harvests energy from the motions of you walking to power its powerful walk-spin-ultra-cycle (tm) technology, cleaning your clothes in a matter of seconds! (600000 of them, to be precise)"},
+			{"name": "Romantifork", "desc": "It's all the romance of sharing two straws in one drink, now applied to almost all food!"},
+			{"name": "50,000 Sunglasses", "desc": "Keep misplacing your sunglasses? Never worry about that ever again -- through the power of cheap, exploitative labor and bulk shipping, you can have more sunglasses than days you're projected to continue existing on earth. Order now!"},
+			{"name": "Anti-odorizer", "desc": "Worried you smell bad? Press the big button on the anti-odorizer to temporarily disable the olfactory organs of everyone around you!"},
+			{"name": "gulpgulp.js", "desc": "gulpgulp pre-processes the process of pre-processing tasks. Cut out the middle-middle-middle man with the new swiss army knife of streaming builds!"},
+			{"name": "A Regular Kitchen Knife", "desc": "Cut out the middle-middle-middle-middle man with this knife. You don't like all of this abstraction nonsense."},
+			{"name": "Soundproof-foam-proof-foam", "desc": "It's foam that's immune to soundproof foam. You expected more?"},
+			{"name": "Quadruple-sided Tape", "desc": "It's sticky in all four dimensions."},
+			{"name": "USB-X Cable", "desc": "Tired of not having the right mini, micro, nano, type A, type B, type C, etc USB cable? The USB X cable can morph to fit into any of these!"},
+			{"name": "Anti-flashlight", "desc": "Tired of the sun beating on your neck? Didn't remember one of your 50,000 sunglasses? Just whip out the anti-flashlight to give yourself a break from the hot sun."}
+		]
+
+		function setModal(index) {
+			let myInfo = info[index];
+			document.getElementById("modalTitle").innerHTML = myInfo.name;
+			document.getElementById("modalBody").innerHTML = myInfo.desc;
+		}
+    </script>
+
+</body>
+
+</html>

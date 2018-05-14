@@ -1,0 +1,19 @@
+11813
+12288
+11654
+10105
+10483
+11598
+10900
+
+--
+
+Senior D I: 3 credits
+BT321: 3 credits
+PEP151: 3 credits
+CS485: 1 credit
+Intro to Financial Engineering: 3 credits
+QF103: 1 credit
+CS555: 3 credits or CS553 3 credits
+
+17 credits

@@ -1,0 +1,4 @@
+#lang eopl
+
+(define (get-sum n)
+  (if (> n 1) (+ n (get-sum (- n 1))) (1)))

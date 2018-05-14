@@ -1,0 +1,62 @@
+;
+; InClassQuiz.asm
+;
+; Created: 11/20/2015 2:14:13 PM
+; Author : Adam
+;
+
+
+; Replace with your application code
+init:
+	.def a = r16
+	.def b = r17
+	.def result1 = r18
+	.def result2 = r19
+
+	.def productResult = r20
+	.def doubleResult = r21
+
+main:
+	ldi r28, low(RAMEND-3)
+	ldi r29, high(RAMEND-3)
+	out SPH, r29
+	out SPL, r28
+
+	ldi a, 0x06
+	std Y+1, a
+	ldi b, 0x04
+	std Y+2, b
+
+	clr productResult
+	call product
+	ldd productResult, Y+3
+
+	clr doubleResult
+	std Y+3, productResult
+	call doublenum
+	ldd doubleResult, Y+4
+
+	out PortB, doubleResult
+	rjmp end
+
+
+product:
+	ldd a, Y+1
+	ldd b, Y+2
+
+	mul a, b
+
+	std Y+3, r0
+	ret
+
+
+doublenum:
+	ldd productResult, Y+3
+	lsl productResult
+	std Y+4, productResult
+	ret
+
+end:
+	ret
+
+

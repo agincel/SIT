@@ -1,0 +1,51 @@
+
+Market Risk
+
+Credit Risk
+
+Operational Risk
+
+Liquidity Risk
+
+FINAL LEG YIELD CURVE
+Swap 2y = 0.5
+df(0, 2y) = (1 + (0.5 / 100) * (1/2) * (0.9987 + 0.9967 + 0.9947)) / (1 - (0.5 / 100) * (1/2)) = 0.99
+
+Credit Events
+1) Bankruptcy
+2) Failure to pay in a timely manner
+3) Restructuring
+4) Repudiation (a new government not honoring the old one's debt)
+
+--
+
+Credit Default Swap Spread
+Funded vs Unfunded
+
+If a CDS defaults you have to pay Notional * (1 - RecoveryRate)%
+
+Can be settled Physically or via Cash.
+
+Physical Settlement
+	- you buy protection and own the bond
+	- physical protection: you give bond to seller, get 100%
+		- why equal to 1-R?
+		- Bond is worth R when you give it to seller, buys it for 1 - R.
+
+this is book chapter 6
+
+[Buyer]               [Seller]
+			-> C (premium)
+			<- Default
+
+PV of Premium = sum 1 to N(C*deltai*dfi*SurvivalProbabilityAtT)
+
+C*sum(deltaidfiSTi)
+that whole sum is called PV01. idgi
+
+PV of default is...?
+You get 1 - R. 
+Q(t) = 1 - S(t), Q(t) is basically death likelihood
+PV = (1 - R) * integral from 0 to maturity of (dQ(t)e^(-rt))
+				this integral will turn into a sum of discount factors
+dQ(t) = -dS(t)

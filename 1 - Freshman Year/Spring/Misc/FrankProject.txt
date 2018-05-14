@@ -1,0 +1,25 @@
+Audio
+--------
+Jump //asdf
+Shoot //asdf
+Injury //asdf
+Bullet_death //asdf
+Player_death //asdf
+Player_fall_crunch //asdf
+landing //asdf
+getHealth //asdf
+getAmmo //asdf
+Respawn //asdf
+--
+buttonClick (2 or 3) //adsf
+TreasureBox_start
+TreasureBox_Correct
+TreasureBox_Fail
+Popup_hint
+Popup_close //asdf
+
+Music
+--
+Question to come back to life (hell)
+Main Menu
+In world

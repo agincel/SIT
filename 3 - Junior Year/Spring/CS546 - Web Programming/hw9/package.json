@@ -1,0 +1,21 @@
+{
+  "name": "hw6",
+  "version": "1.0.0",
+  "description": "Lab 6",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Adam Gincel",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.0",
+    "express-session": "^1.15.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+  }
+}

@@ -1,0 +1,12 @@
+#lang eopl
+
+(define (keep-evens intList)
+  (if (null? intList)
+      '()
+      (if (= (remainder (car intList) 2) 0)
+          (cons (car intList) (keep-evens (cdr intList)))
+          (keep-evens (cdr intList)))
+      )
+  )
+
+

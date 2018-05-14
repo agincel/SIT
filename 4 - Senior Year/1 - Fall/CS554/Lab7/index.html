@@ -1,0 +1,76 @@
+<!doctype html>
+<!-- 
+  Adam Gincel
+  CS554 Lab 7
+  index.html
+
+  I pledge my honor that I have abided by the Stevens Honor System.
+-->
+
+<html>
+  <head>
+    <title>Web Lab 7</title>
+    <style>
+      img {
+        height: 100px;
+      }
+    </style>
+  </head>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <body>
+    <ul id="messages"></ul>
+    <form action="">
+      <label>Username</label>
+      <input id="username" autocomplete="off" /><br />
+
+      <label>Search Query</label>
+      <input id="m" autocomplete="off" /><br />
+      
+      <label>Message</label>
+      <input id="message"  autocomplete="off" /><br />
+      <button>Send</button>
+    </form>
+    <div id="images"></div>
+  </body>
+
+
+  <script>
+    $(function() {
+      var imageLinks = [];
+      var socket = io();
+      $('form').submit(function() {
+        socket.emit('message', {query: $('#m').val(), username: $("#username").val(), message: $("#message").val()});
+        $("#username").attr("disabled", true); //disable setting username after first time
+        $('#m').val(""); //clear fields
+        $("#message").val("");
+        return false;
+      });
+
+      socket.on('images', function (arg) {
+        if (arg.username && arg.message && arg.links && arg.links.length > 0) {
+          var u = arg.username;
+          var m = arg.message;
+          var links = arg.links;
+          var hadUnique = false;
+          console.log (u);
+          console.log(m);
+          console.log(links.length);
+          var newDiv = $("<div></div>");
+          newDiv.html("<h1>" + u + "</h1> <p>" + m + " </p><br />"); //hacky
+          for (var i = 0; i < links.length; i++) {
+            if (imageLinks.indexOf(links[i]) == -1) {
+              $(new Image()).attr('src', '' + links[i]).appendTo(newDiv).show();
+              imageLinks.push(links[i]);
+              hadUnique = true;
+            }
+          }
+          if (hadUnique)
+            newDiv.prependTo($("#images")).fadeIn();
+        }
+        //console.log(arg[0]);
+        //$(new Image()).attr('src', '' + arg[0]).appendTo($("#images")).fadeIn();
+      });
+    })
+  </script>
+</html>

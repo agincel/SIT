@@ -1,0 +1,120 @@
+Credit Default Swaps
+
+The Buyer is: (naked), Short credit, short bond
+The Seller is: long credit, long bond
+The Premium, denoted C, is also called the spread. Unlike in an actual bond scenario there is no need to pony up the full notional here.
+
+Present value of premium is equal to C * PV01. PV01 is a riskier DV01.
+ = Csum(deltaidfiS(ti))
+
+ S is equal to an integral I missed. rip.
+
+
+ Present Value of default is = (1 - R) integral(0, T, dQ(T)[df(T)])
+ Appoximately equals -(1 - R)sum(S(ti)-S(ti-1))df(ti)
+ d(1 - S) = Q
+ -dS = dQ
+
+ C ends up equalling ((1-R)sum(Si-1 - Si)dfi)/sum(deltaj*dfj*Sj)
+
+ Sj = S(tj) = e^(-hj*tj)
+
+ --
+
+ Things we've calibrated:
+
+ Yield Curves, where markers were cash, futures/swaps -> df
+S = 1 - df / DV01
+
+
+ Options, where price lead to implied volatility, or where implied volatility could lead to price
+ C=S*N(d1) - ke^-rt * N(d2)
+ Had to use root finding to solve
+
+ 3) Hazard Rate Curves
+ 	We're given the premium, aka C or aka CDS
+ 	T   Spread (bps)
+ 	6m   100
+ 	1y   110
+ 	2y   120
+ 	3y   130
+ 	5y   170
+
+ 	The Credit Triangle is (C, R, hi) which is CDS Spread, Recovery Rate, Hazard Rate
+
+ 	We want h, but there are several h's. People approximate. What can you do? Difference between spot and forward interest rate? Spot rates can be discounted all the way back in one shot. Forwards get discounted back in increments. Hazard rates are forwards. Bootstrapping.
+
+ 	Set R equal to something. 30%? 40%? most are determined company by company. Recovery rate of Stevens is probably 100%. Doesn't mean risk free.
+
+ 	Cti sum 1, 2 (deltai * dfi * e^(-hi*ti))
+ 	 = (1 - R) sum(1,6)(e^(-hi*ti-1)-e^(-hi*ti))*dfi
+
+ 	 Cti is given.
+
+ 	 Left side is quarterly, right side is monthly
+
+ 	 Need to root find for h. h has to be positive.
+
+ 	 Use solver, which lets you set constraints.
+
+ 	 For the second one, you have
+
+ 	 Ct2 (sum(1, 2)(deltai*dfi*e^(-hi*ti))
+ 	 + sum(i > T1, T2)(deltai*dfi*e^(-h1*Ti)*e^(-h2*(ti-T1)))
+ 	 = 
+ 	 (1-R)sum(1,6)(e^(-h1*tj-1) - e^(-h1*tj))df(Hj)
+ 	 + (1 - R)*sum(1>T1,T2)(e^(-h1*T1)(e^(-h2*(tj-1 - T1))-e^(-h2*(tj - T1))))
+
+ 	 ----- wow what the fuck
+
+C*sum(deltai*dfi*e^(-h*ti)) = (1-R)sum(e^(-h*ti-1)*e^(-hti))
+--
+(1 - R) = (C*daycount + (1-R))*e^(-h*daycount)
+d^(-h*daycount) = (1 - R) / (1 - R) + C*daycount
+
+h = (-1/daycount)*ln(1 - (C*daycount)/(1-R+(C*daycount)))
+
+[some bullshit]
+
+h = C / (1 - R)
+This is the credit triangle
+
+The hazard rate is basically an estimate of default. When CDS spreads go up, h goes up. When recovery rates go up, h goes up as well. High recovery rate but low spread means the market is more worried about default.
+
+-----------------------
+What the fuck is a par asset swap and why am I in this class
+Literally why is this required for the QF minor
+I just want to minor
+some backgrond knowledge
+basic financial literacy
+fuck fuck fuck fuck uck fuck fuck
+
+1) Seller sells bond at p_market to buyer, buyer sends 100% of par to seller. 100% of what. I don't fucking know.
+2) Buyer pays seller coupon, seller pays buyer Libor + Spread, which is called the Asset Swap Spread
+3) Under default, the buyer still pays coupon to the seller, who still pays Libor + A. A is paid for credit risk.
+
+We need to solve for A. 
+PV for seller is 1 + C*DV01 quarterly
+PV for buyer is P_mkt + sum(Li*deltai*dfi) + A*DV01 quarterly
+			 is P_mkt + (1 - df(T)) + A*DF01q
+At T=0 shit cancels and
+A = (C*DV01_semi + df(T) - p_mkt) / DV01_quar
+
+This is all in Chapter 6 apparently.
+
+---------
+ASSIGNMENT
+
+Inputs: Interst Rate, Recovery Rate, Coupon Daycount, Default Daycount, Coupon Delta
+
+Market quotes: 6m, 1y, 2y, 3y, 4y, 5y, 7y, 10y
+When df = e^(-rt) that r is equal to interest rate
+Coupon daycount, when you have C*Delta+i, we're using 360
+
+When using e^ht use t 365
+
+---------
+
+One thing he did with the other class that he thinks will help us
+
+Presentation on historical risks that have happened.

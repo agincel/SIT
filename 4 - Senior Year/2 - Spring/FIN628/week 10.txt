@@ -1,0 +1,48 @@
+Final exam:
+Problem 1: Binomial Trees, 2 or 3 step, price an option
+Problem 2: Black-Schoules, price an option. Will be given base formula, not any modifications. Expected to solve for Delta. Other parameter formulas given
+Problem 3: Using the greeks to do stuff?
+
+=============================
+
+delta_p = 0
+gamma_p = -3000
+delta_call = 0.62
+gamma_call = 1.5
+
+olddelta_p + w_a*
+
+== again:
+
+I have a portfolio that starts as delta neutral. This means it probably has some owned shares and some options. The gamma is nonzero, -3000. This means I'm not fully hedged. To be fully hedged I have two choices. Choice 1: dynamically delta hedge, every time delta changes I change. Or, I can try to hedge for gamma. gamma of the underlying is actually zero, so no amount of calls or puts will change it. A linearly independent instrument can change it.
+
+Gamma: how much does this delta change when the stock changes, basically delta of delta over stock price change.
+
+Theta: rate of change of the value of our portfolio with respect to time.
+
+=====
+
+We have a delta-neutral portfolio
+
+delta_p = 0
+gamma_p = -5000
+vega_p = -8000
+
+delta_1 = 0.6
+gamma_1 = 0.5
+vega_1 = 2
+
+delta_2 = 0.5
+gamma_2 = 0.8
+vega_2 = 1.2
+
+to fix both gamma and vega, we need two linearly independent assets
+
+gamma_new = -5000 + w_1*0.5 + w_2*0.8 = 0
+vega_new = -8000 + w_1*2 + w_2*1.2 = 0
+
+//solve with a l g e b r a
+after math you get
+w_1 = 400
+w_2 = 6000
+Makes it delta, gamma, and vega neutral (after you fix delta with underlying)

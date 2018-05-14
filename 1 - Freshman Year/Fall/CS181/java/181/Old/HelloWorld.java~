@@ -1,0 +1,26 @@
+/*
+ * HelloWorld.java
+ * 
+ * Straightforward java class to sanity-check the setup
+ *
+ * 20100902
+ * 
+ * (c) 2008--2014 Antonio R. Nicolosi
+ *
+ */
+
+/**
+ * The HelloWorld class in Java 
+ */
+public class HelloWorld {
+
+    /**
+     * The main method prints out a statement on standard output
+     * using the System.out predefined object
+     */
+    public static void main(String[] args) {
+	int x = 2;
+	System.out.println(x*72);
+	System.out.println("Hello world!");	
+    }
+}

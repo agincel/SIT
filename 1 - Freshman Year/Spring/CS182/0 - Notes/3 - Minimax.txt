@@ -1,0 +1,5 @@
+Minimax Algorithms
+
+Find the worst and best cases. 
+
+Heuristic: a way of making a decision that seemingly should take you to the valid answer, but you can't prove it will.

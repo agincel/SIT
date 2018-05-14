@@ -1,0 +1,41 @@
+Floyd Algorithm
+
+D sub k of [i][j]
+
+[i] = src
+[j] = destination
+
+k = set of int nodes
+
+Dk[i][j] = min(Dk-1[i][k] + Dk-1[k][j], Dk-1[i][j])
+
+Floyd()
+{
+	allocate D[v][v];
+
+	for(i = 0; i < V; i++)
+		for(j = 0; j < V; j++)
+			if(i == j)
+				D[i][j] = 0;
+			else
+				D[i][j] = weight(i, j);
+
+	for(k = 0; k < V; k++)
+		for(i = 0; i < V; i++)
+			if(i != k && D[i][k] != INF)
+			{
+				for(j = 0; j < V; j++)
+					if(j != k && j != i && D[k][j] != INF && (D[i][k] + D[k][j] < D[i][j]))
+					{
+						D[i][j] = D[i][k] + D[k][j];
+
+					}
+
+			}
+
+
+	return D;
+
+
+
+}

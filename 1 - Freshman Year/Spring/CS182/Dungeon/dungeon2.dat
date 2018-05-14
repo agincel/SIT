@@ -1,0 +1,41 @@
+10 24 6
+FamilyRoom Dog 20 5
+Kitchen CookieMonster 5 20
+DiningRoom Butler 25 25
+MasterBedroom Owner 100 100
+GreatRoom Couch 15 20
+MudRoom WashingMachine 15 5
+LivingRoom GlassTable 10 30
+EntranceWay Flowers 5 5
+UpstairsHallway Hamper 5 5
+DownstairsBathroom Toilet 5 10
+0 1 3
+0 4 8
+0 5 6
+0 7 7
+1 0 4
+1 2 4
+1 7 6
+2 1 5
+2 6 2
+3 8 5
+4 0 9
+4 5 3
+5 0 7
+5 4 4
+5 9 4
+6 2 3
+6 7 6
+7 0 8
+7 1 7
+7 6 7
+7 8 15
+8 3 6
+8 7 4
+9 5 5
+Kenny 1 10
+Kyle 25 50
+Cartman 25 100
+Stan 30 60
+Mole 100 100
+Satan 6 66

@@ -1,0 +1,13 @@
+.include "m328Pdef.inc"
+main:
+clr r20
+ldi r20, $1a // load 26
+ser r16
+
+loop:
+lsr r20 //shift right
+out DDRB, r16
+out PORTB, r20
+cpi r20, 0
+brne loop
+ret

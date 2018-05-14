@@ -1,0 +1,25 @@
+2) Stock price of AAA is 45, in the money put option w 6 months sells for 4.5. Intrinsic value of option is 2.5, what's maximum gain/loss for option writer, assuming they wait until expiration.
+
+really asking what the graph is
+
+Writer (Seller) of a put option has infinite downside, but a capped gain. Max gain is 4.5 (what it sold for), if they don't exercise.
+
+You can find the strike price by using IV
+
+IV is equal to max(K - S, 0). We know S, so max(K - 45, 0). It's not 0, so it's K - 45. 
+2.5 = K - 45, K = 47.5.
+
+The breakeven point is equal to K - p = 43. We have maximum downside when stock price is equal to zero. If that happens we have to pay 47.5 (the strike price). We received p = 4.5, so 47.5 - 4.5 = 43 is our biggest loss.
+
+So -43 to 4.5.
+
+3) 
+S = 40.53
+TIME VALUE is the difference between the premium and the intrinsic value of an option. 
+A) call, K = 40, t = 1m (IV = 0.53)
+B) put, IV = 15, t = 1m (K = S + IV, K = 55.53)
+C) call, IV = 0.53, t = 1y, low IV (close to at the money, long time period)
+D) put, K = 70, t = 3m (K = S + IV, IV = 70 - 40.53 = 29.47)
+E) call, K = 10, t = 1y, (IV = S - K, IV = 30.53)
+
+

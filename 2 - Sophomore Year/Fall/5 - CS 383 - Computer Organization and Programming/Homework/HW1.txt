@@ -1,0 +1,147 @@
+Adam Gincel
+CS306 Theoretical Homework 1
+22 September 2015
+
+I pledge my honor that I have abided by the Stevens Honor System.
+-Adam Gincel
+
+1: Compare client-server architecture to a peer-to-peer system.
+	Client-server:
+		Files are in a single, central location and ready to transfer.
+		Administration is made much simpler.
+		Servers are much more efficient at delivering files than multiple weak computers are.
+
+	Peer-to-Peer:
+		All computers on a given network share files with each other.
+		Each computer is treated equally.
+		Harder to locate files from other peers.
+
+2: What is the primary purpose of the OS within a computer?
+	Operating systems provide an API which enables a user to interact with the hardware of a computer system. They often include File management, I/O, and a kernel which handles things like memory management, resource scheduling, program communication, and security.
+
+3: What are the benefits of abstraction and decomposition play when building out a system?
+	Abstraction enables simpler high level computation, and decomposition allows processes to be broken down into simpler, easier to compute pieces. These two concepts, when used together, enable complex computing systems that are still accessible and easier to use for end users, and are what make the current technological world possible.
+	
+
+4: Explain the differences between primary storage and secondary storage. What's each used for?
+	Primary Storage:
+		RAM is another name.
+		Stores individual bits, reads/writes very quickly
+		Immediately needed instructions and data for programs is stored here.
+		Comparatively Expensive.
+
+	Secondary Storage:
+		Much cheaper than primary storage; typically much higher capacity.
+		Larger files are stored here
+		Holds programs that are later loaded into Primary Storage.
+
+5: What are the major characteristics of a bitmap images? What are the major characteristics of an object or vector image?
+	Bitmaps:
+		Store RGB (and potentially A) data for each pixel, which are stored in a grid.
+		These are good for realistic images, mainly photos.
+
+	Vectors: 
+		Store data as individual objects (ie shapes), which are then interpreted by a program.
+		These allow for larger images at smaller file sizes.
+		Their nature implies more computation needed to render them.
+		Not viable for things like photographs.
+
+6: What does BCD stand for? Explain at least two important disadvantages of storing numbers in BCD format. Offer an advantage.
+	BCD stands for Binary Coded Decimal. Two downsides to its storage format are: increased complexity in circuitry needed for basic arithmetic, and less dense storage. On the flipside, it is a more accurate representation of decimal quantities, and involves less rounding.
+
+		
+–
+
+1: Convert to decimal:
+	a. 4F
+		(4 * 16^1) + (15 * 16^0) = 64 + 15 = 79
+	b. 3D7B
+		(3 * 16^3) + (13 * 16^2) + (7 * 16^1) + (11 * 16^0) = 15739	
+	c. ABCBA
+		(10 * 16^4) + (11 * 16^3) + (12 * 16^2) + (11 * 16^1) + (10 * 16^0) = 703674
+
+2: Convert to hex:
+	a. 10101101111010
+		10 1011 0111 1010 = 2 (11) (7) (10) = (2B7A)16
+
+	b. 11111100011110001
+		1 1111 1000 1111 0001 = (1) (15) (8) (15) (1) = (1F8F1)16
+	c. 111 0011 1110 1111
+		(7) (3) (14) (15) = (73EF)16
+
+	d. 1100 0101 0001 1001
+		(12) (5) (1) (9) = (C519)16
+3. Convert  hex to octal:
+	a. 4FA
+		(0100) (1111) (1010)
+		010 011 111 010 = (2372)8
+	b. 96702
+		10 010 110 011 100 000 010
+		(2263402)8
+	c. A3A4
+		001 010 001 110 100 100
+		(121644)8
+	d. 1025
+		10044
+4. Add binary, convert to base 10:
+	a. 1111 + 101
+		1111
+		+101
+		=(10100)2
+		16 + 4 = (20)10
+
+	b. 1101101 + 111101
+		1101101
+		+111101
+	=     (10101010)2
+		128+32+8+2 = (170)10
+	
+	c. 111100 + 10101101
+		111100
+	+     10101101
+	    =(11101001)2
+		128+64+32+8+1 = (233)10
+
+5. Convert to base 10
+	a. (31454)8
+		(3*8^4) + (1*8^3) + (4*8^2) + (5*8^1) + (4) = 13100
+	
+	b. (1011011)2
+		64+16+8+2+1 = 91
+	c. (FAB)16
+		(15*16^2) + (10*16) + (11) = 4011
+
+6. Convert table
+
+Dec		Bin			Oct		Hex
+335.8		101001111.11101110...	517.73567356...	14F.EEE...
+7.5625		111.1001		7.44		7.9
+5.38867188	101.011000111		5.307		5.67
+12.75390625	1100.11000010		14.604		C.C2
+--
+
+1. LMC has 01-99, 01 is input, 02 is output. Write a program in LMC to take number from input box, add input to 98 and store in 99.
+
+IN
+ADD 98
+STO 99
+
+2. 
+	i. This program is currently running the operation I3 - (I2 - I1), or I3 - I2 + I1
+		To make it correct, we will need to use a second "mailbox"
+
+		IN
+		STO 99
+		IN
+		STO 98
+		IN
+		ADD 98
+		STO 98
+		LDA 99
+		SUB 98
+		OUT
+		HLT
+		
+
+
+

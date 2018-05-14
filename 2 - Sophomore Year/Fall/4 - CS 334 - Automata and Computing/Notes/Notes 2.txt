@@ -1,0 +1,8 @@
+M = {Q, Sigma, Transition function, Start state, Final states}
+w is a string over sigma, M accepts W if we can write it as w = y1y2...yn where yi exists in Sigma, and a sequence of states r0r1...rn exists in Q suck that
+
+
+we start in the start state, each transition is valid, and we end in a final (accepting) state.
+
+A language is called a regular language if some automaton recognizes it (DFA or NFA)
+

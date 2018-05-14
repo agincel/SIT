@@ -1,0 +1,27 @@
+Warshall //checks to see if a graph is connected
+
+In Floyd, Dk[i][j] = min(Dk-1[i][k] + Dk-1[k][j], Dk-1[i][j]))
+
+We need a boolean array, to map all connections
+	A	B	C	D
+A   T	T	T	T
+B	F	T	F	T
+C	F	T	T	T
+D	T	F	F	T
+
+Ck[i][j] = (Ck[i][j] OR (Ck-1[i][k] AND Ck-1[k][j]))
+	
+/*for(k = 0; k < V; k++)
+	for(i = 0; i < V; i++)
+		for(j = 0; j < V; j++)
+			C[i][j] = C[i][j] || (C[i][k] && C[k][j]);
+			*/
+//---------------------------------------		
+//better version
+for(k = 0; k < V; k++)
+	for(i = 0; i < V; i++)
+		for(j = 0; j < V; j++)
+			if(!C[i][j])
+				if((C[i][j] = (C[i][k] && C[k][j]))
+					if(--falseCount <= 0)
+						return true;

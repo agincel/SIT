@@ -1,0 +1,6 @@
+a/c means c = a*n
+b/d means d = b*m
+
+show ab/cd
+
+ab/cd means cd = ab*k

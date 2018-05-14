@@ -1,0 +1,6 @@
+#lang eopl
+
+(define (pig-latin wordaslist)
+  (if (not (null? wordaslist))
+      (append (cdr wordaslist) (cons (car wordaslist) ay))
+      '())) ;mine from week 2

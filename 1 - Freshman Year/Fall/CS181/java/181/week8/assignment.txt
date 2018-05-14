@@ -1,0 +1,46 @@
+infix    to  posfix     using stack.
+(expression)(expression)
+
+infix   prefix   postfix
+C=A+B	+AB	 AB+
+
+f-b*g
+(f-(b*g))
+f-bg*
+fbg*-
+
+d/e * c + 2 
+cde/*
+
+---
+
+
+
+a+b*c-d
+
+
+//if operand, directly concatenate it
+Step Number:  	1
+Scanned Item:	a
+Stack:		
+Output:
+
+
+if(operator)
+	push it to stack if
+	stack is empty
+	or if current operator > top of stack.
+
+	if current operator is less than or equal to top of stack...
+		pop until stack is empty or until current operator is > top.
+
+upon popping, or getting any operator, contatonate it to a string. (this makes sense!)
+
+=--
+
+parens
+
+push (
+
+at ) pop until you reach (, then discard ( and don't push )
+

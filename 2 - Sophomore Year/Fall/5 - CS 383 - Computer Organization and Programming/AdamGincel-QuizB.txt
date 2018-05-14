@@ -1,0 +1,16 @@
+.include "m328Pdef.inc"
+init:
+	.def i = r16
+	.def n = r17
+main:
+	ldi i, 0x0F
+	ldi n, 0x01
+
+loop:
+	cpi i, n
+	brlo end ;if i < n aka if it reaches 0
+	out PortB, i
+	dec i
+	rjmp loop
+end:
+	rjmp init

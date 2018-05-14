@@ -1,0 +1,36 @@
+# Don't show the startup screen
+startup_message off 
+
+# On hangup, don't exit, just detach
+autodetach on 
+
+# Free up C-A! (Make the escape/command character be C-Z)
+escape ^Zz 
+
+# Larger scrollback buffer (default: 100 lines)
+defscrollback 1000 
+
+# Audio bell isn't that bad
+vbell off 
+
+# http://www4.informatik.uni-erlangen.de/~jnweiger/screen-faq.html
+# Q: My xterm scrollbar does not work with screen.
+# A (short): Uncomment the following line:
+termcapinfo xterm ti@:te@
+
+# A (long): 
+# The problem is that xterm will not allow scrolling if the
+# alternate text buffer is selected. The standard definitions of the
+# termcap initialize capabilities ti and te switch to and from the
+# alternate text buffer. You can tell screen not to use these 
+# initialisations by adding the line:
+#
+#   termcapinfo xterm ti@:te@
+#
+# to your ~/.screenrc file.
+
+# Show the list of tabs on the bottom line, with the current tab highlighted
+caption always '%-Lw%{.kG} %n%f %t %{-}%+Lw' 
+
+# Don't run /bin/sh, run /usr/bin/bash
+shell /usr/bin/bash

@@ -1,0 +1,15 @@
+{
+  "name": "hw4",
+  "version": "1.0.0",
+  "description": "First MongoDB project",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Adam Gincel",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^2.2.24",
+    "uuid": "^3.0.1"
+  }
+}

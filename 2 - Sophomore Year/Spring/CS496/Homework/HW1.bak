@@ -1,0 +1,12 @@
+#lang racket
+(define seven
+  (lambda () 7)
+  )
+(define sign
+  (lambda (x)
+    (cond [(> x 0) 1]
+          [(< x 0) -1]
+          [else 0]
+          )
+    )
+  )

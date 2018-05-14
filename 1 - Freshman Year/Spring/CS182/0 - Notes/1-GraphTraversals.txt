@@ -1,0 +1,68 @@
+Two ways:
+
+int v;
+for(v=0; v < V; v++)
+	doStuff();
+
+//--
+
+//neighbors of v.
+int n;
+for(n=nextNeighbor(v, V); n<V; n=nextNeighbor(v, n))
+	doStuff();
+//--
+
+unsigned int nextNeighbor(unsigned int v, unsigned int w)
+{
+	//for first have w = V.	
+}
+
+//-----------DFS/BFS
+
+class myGraph()
+{
+//addVertex, add Edge, void dfs(), void dfs(uint s)
+	bool visited[]; //enough for all vertices, false everywhere.
+	Elem vertices[];
+
+}
+
+void dfs(uint s)
+{
+	int v;
+	if(s<V && !visited[s])
+	{
+		cout << vertices[s] << " ";
+		visited[s] = true;
+
+		for(v = nn(s, V); v < V; v = nn(s, v))
+		{
+			if(!visited[v])
+				dfs(v);	
+
+
+		}
+	}
+}
+
+
+void bfs()
+{
+	int v;
+	unvisitAll();
+
+	for(v = 0; v < V; v++)
+	{
+		if(!visited[v])
+		{
+			bfs(v);
+			cout << endl;
+		}
+	}
+
+}
+
+void bfs(uint v)
+{
+
+}

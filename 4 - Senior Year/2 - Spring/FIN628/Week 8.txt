@@ -1,0 +1,20 @@
+STraddle: long call, long put
+
+
+                      K
+Long call     0       |   S-K
+Long put     K-S      |    0
+			K-S 		  S-K
+
+
+
+
+Exam questions:
+
+1: Mechanics of options. When buy a call, put, create a payoff structure, what's the IV if you're writer or buyer. Max/min gain/loss, time value, how use it to hedge? How use it to speculate? Is that directional?
+
+2: Remember those relationships: minimum of put, minimum of call, (max is easy, either K - S or S - K), and put-call parity. If ou have a dividend, replace S with (S - D). American Call/Put. 
+
+3: trading strategies, give us strategy, ask us to create a table/graph, breakeven points, min/max gain/loss, when to enter that strat, compare to another, etc.
+
+Time: approx 1.5 hours. 

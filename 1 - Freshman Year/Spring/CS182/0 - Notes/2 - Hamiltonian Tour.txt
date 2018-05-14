@@ -1,0 +1,27 @@
+2-Hamiltonian Tour
+
+Hamiltonian Circuit or Tour
+
+--
+
+k-clique
+
+--
+NP-Complete
+
+Complexity Theory: lets us compare algorithms to see which will be better for large input.
+
+Computability Theory: is there a solution in computing that exists. Does an algorithm exist?
+
+--
+
+1900: David Hilbert, had 23 mathematical problems for the coming century to solve.
+
+Devise an algorithm that determines whether any diophantine equation with integer coefficients has an integral solution.
+
+Turing Machines: Alan Turing, 1936
+Lambda-Calculus: (Church-Kleene 1932-1941)
+Recursive Functions (Godel 1934)
+Post Systems (Post 1943)
+Markov Systems (Markov 1960)
+

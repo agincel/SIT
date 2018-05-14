@@ -1,0 +1,55 @@
+Spot = 31
+K = 30
+r = 10%
+c = 3
+p = 2.25
+T = 0.25
+
+c + Ke^(-rt) ?= p + spot
+3 + 30*e^(-0.1 * 0.25) ?= 2.25 + 31 -> 
+32.26 < 33.25
+
+call undervalued, put overvalued
+buy call -3
+buy bond (invest at rt) 30.25
+short put +2.25
+short stock +31
+
+receive proceeds 30.25e^(0.1*.25) = 31.02
+buy stock at -St
+Call option Value and Put Option Value are both equal to St - 30
+equals 31.02 - 30
+1.02 profit
+
+-----
+
+Spot = 31
+K = 30
+r = 10%
+p = 1
+t = 0.25
+
+call + Ketc = 32.26
+p + spot = 32
+
+put is undervalued, call is overvalued
+buy put -1
+buy stock -31
+short call + 3
+borrow at risk free rate r = +29
+
+pay loan 29etc = 29.73
+Sell stock at max of (St, K)
+Call position happens, -max(S-K, 0)
+both S>K and S<K end up being worth just k
+
+you get 30 - 29.73, guaranteed
+
+------
+
+Bull spread using calls: buy 1 call at K1, sell 1 call at K2
+                          K1                 K2
+Buy 1 (K1) call:     0     |      S-K1              S-K1
+Sel 1 (K2) call:     0            0           |     K2-S
+Payoff:              0            S-K1              S-K1+K2-S = K2-K1
+Total P&L:           c2-c1        S-K1+c2-c1        K2-K1+c2-c1

@@ -1,0 +1,14 @@
+CREATE TABLE Employee (
+	RegNo int,
+	FirstName varchar(255),
+	Surname varchar(255),
+	DeptID int,
+	Salary float,
+	City varchar(255),
+
+	PRIMARY KEY(RegNo),
+	UNIQUE(FirstName, Surname),
+
+	FOREIGN KEY(DeptID) REFERENCES Department ON DELETE CASCADE
+)
+	

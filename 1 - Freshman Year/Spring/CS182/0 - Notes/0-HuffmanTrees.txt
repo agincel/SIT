@@ -1,0 +1,97 @@
+Huffman tree:
+	Lossless data compression
+	based on frequency of occurrence (ie lots of 'e's = better compression
+	Entropy encoding
+
+Priority queue: Lowest frequency = highest priority
+
+Steps:
+	add all symbols to queue
+	remove and join first two items in queue
+	add it to queue 
+	repeat until size of queue = 1
+
+hello_world
+
+h = 1
+e = 1
+l = 3
+o = 2
+_ = 1
+w = 1
+r = 1
+d = 1
+
+h e _ w r d o l
+1 1 1 1 1 1 2 3
+
+take first two, remove and add to tree, make node like this
+
+	n1
+h1		e1
+-------------------
+
+_ w r d o n1 l
+1 1 1 1 2 2  3
+
+
+	n2
+_		w
+-----------------
+
+r d o n1 n2 l
+1 1 2 2  2  3
+
+	n3
+r		d
+------------------
+
+o n1 n2 n3 l
+2 2  2  2  3
+
+**
+
+	n4
+o(2)		n1
+	
+	   h(1)		e(1)
+	
+-----------------------
+
+n2 n3 l n4
+2  2  3 4
+
+
+	n5
+n2		n3
+
+
+l n4 n5
+3 4  4 
+	n6
+l		n4
+
+--
+
+n5 n6
+4  7
+
+	n7
+n5		n6
+
+n7
+11 --length of string, done
+
+******************************************************************************************
+
+
+Decompression
+
+0: go left
+1: go right
+
+...until you find a leaf
+put the character inside a result string
+
+
+

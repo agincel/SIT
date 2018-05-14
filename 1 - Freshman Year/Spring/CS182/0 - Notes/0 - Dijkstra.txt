@@ -1,0 +1,44 @@
+int arr dijkstra(unsigned int s)
+{
+		static const unsigned int INF = -1;
+
+		//EC
+		unsigned int D[V]; //V = number of vertices
+		unsigned int Whatever[V]; //list of all unvisited vertices
+		
+		for(int i = 0; i < V; i++)
+		{
+			D[i] = INF;
+			Whatever[i] = i;
+		}
+		D[s] = 0;
+		
+		while(todo > 1)
+		{
+			for(i = 0; i < todo; i++)
+			{
+				find the min in D[W[i]];
+			}
+			if(D[W[min]] == INF)
+				break;
+			//
+			swap(W, min, --todo);
+			
+			for(i = 0; i<todo; i++)
+				if(edge between W[todo] and W[i])
+					if(D[W[i]] > D[W[todo]] + weight(W[todo], W[i]))
+						D[W[i]] = D[W[todo]] + weight(W[todo], W[i]);
+			//-----------
+		
+		}
+		
+		return D;
+}
+
+//s = 1;
+
+D[1] = 0;
+W[] = {1,2,3,4,5,6,7,8}
+todo = 9;
+
+min = 1

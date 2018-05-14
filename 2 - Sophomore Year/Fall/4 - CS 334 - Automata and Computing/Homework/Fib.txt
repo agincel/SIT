@@ -1,0 +1,104 @@
+name: Fibbonacci Recognizer
+init: qLoad
+accept: qAccept
+
+//load 1 onto tape 3
+
+qLoad,_,_,_
+qAccept,_,_,_,-,-,-
+
+qLoad,0,_,_
+qCheck,0,_,0,-,-,-
+
+
+//Check if tape 1 == tape 3
+
+qCheck,0,_,0
+qCheck,0,_,0,>,-,>
+
+qCheck,0,_,_
+qReset,0,0,_,-,-,<
+
+qCheck,_,_,_
+qAccept,_,_,_,-,-,-
+
+qCheck,_,_,0
+qReject,_,_,0,-,-,-
+
+qCheck,0,0,0
+qCheck,0,0,0,>,-,>
+
+qCheck,0,0,_
+qReset,0,0,_,-,<,<
+
+qCheck,_,0,_
+qAccept,_,0,_,-,-,-
+
+qCheck,_,0,0
+qReject,_,0,0,-,-,-
+
+
+
+
+//get all tapes to left, then 
+//get next fib number
+
+qReset,0,_,_
+qReset,0,_,_,<,-,-
+
+qReset,_,0,_
+qReset,_,0,_,-,<,-
+
+qReset,_,_,0
+qReset,_,_,0,-,-,<
+
+
+qReset,0,0,0
+qReset,0,0,0,<,<,<
+
+qReset,_,0,0
+qReset,_,0,0,-,<,<
+
+qReset,0,_,0
+qReset,0,_,0,<,-,<
+
+qReset,0,0,_
+qReset,0,0,_,<,<,-
+
+qReset,_,_,_
+qMath1,_,_,_,>,>,>
+
+//math1: get to tape 3 end
+
+qMath1,0,0,0
+qMath1,0,0,0,-,-,>
+
+qMath1,0,0,_
+qMath2,0,0,_,-,-,-
+
+//Math2: Append tape2 to tape3
+
+qMath2,0,0,_
+qMath2,0,0,0,-,>,>
+
+qMath2,0,_,_
+qMath3,0,_,_,-,<,<
+
+//Math3: move back by tape2
+
+qMath3,0,0,0
+qMath3,0,0,0,-,<,<
+
+qMath3,0,_,0
+qMath4,0,_,0,-,>,-
+
+//Math4: Write old tape3 to tape2
+
+qMath4,0,0,0
+qMath4,0,0,0,-,>,<
+
+qMath4,0,_,0
+qMath4,0,0,0,-,>,<
+
+qMath4,0,_,_
+qCheck,0,_,_,-,<,>

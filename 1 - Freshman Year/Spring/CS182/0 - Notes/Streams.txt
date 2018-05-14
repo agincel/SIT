@@ -1,0 +1,78 @@
+Streams
+
+Streams operators
+
+std::ifstream
+
+ifstream ifs("my_file.txt");
+
+void open(const char *filename, ios_base::openmode mode);
+mode = std::ios::in by default
+
+void close();
+
+
+include <fstream>
+
+ifstream ifs;
+string token;
+
+ifs.open(filename);
+if(!ifs)
+return;
+
+while(ifs>>token)
+{
+	cout << token << endl;
+
+}
+
+
+in out app 
+
+
+fstream fs(filename);
+
+Seek, set position in input sequence
+
+seekg(int position);
+seekg(int offset, ios_base::seekdir way);
+
+Parser---
+
+ifstream ifs("my_dungeon.txt");
+Dungeon dungeon;
+int nbnodes;
+int nbedges;
+
+if(!ifs)
+	return 2;
+
+ifs >> nbnodes;
+ifs >> nbedges;
+string room id;
+int level;
+int gold;
+
+for(unsigned int i = 0; i < nbnodes; i++)
+{
+	ifs >> roomid;
+	ifs >> level;
+	ifs >> gold;
+
+	dungeon.addRoom(Room(roomid, level, gold));
+}
+
+
+string src;
+string dest;
+int weight;
+
+for(unsigned int i = 0; i < nbedges; i++)
+{
+	ifs >> src;
+	ifs >> dest;
+	ifs >> weight;
+
+	dungeon.addHallway(HAllway(src, dest, weight));
+}

@@ -1,0 +1,108 @@
+﻿Adam Gincel
+MA331
+R Code for Final Project
+
+
+ds = file.csv("pcb.csv")
+
+
+#11.42
+boxplot(ds[,"pcb"], main="Boxplot for pcb", horizontal=T, axes=F, staplewex=1)
+text(x=boxplot.stats(ds[,"pcb"])$stats, labels=boxplot.stats(ds[,"pcb"])$stats, y=1.25)
+mean(ds[,"pcb"])
+sd(ds[,"pcb"])
+var(ds[,"pcb"])
+
+boxplot(ds[,"pcb52"], main="Boxplot for pcb52", horizontal=T, axes=F, staplewex=1)
+text(x=boxplot.stats(ds[,"pcb52"])$stats, labels=boxplot.stats(ds[,"pcb52"])$stats, y=1.25)
+mean(ds[,"pcb52"])
+sd(ds[,"pcb52"])
+var(ds[,"pcb52"])
+
+boxplot(ds[,"pcb118"], main="Boxplot for pcb118", horizontal=T, axes=F, staplewex=1)
+text(x=boxplot.stats(ds[,"pcb118"])$stats, labels=boxplot.stats(ds[,"pcb118"])$stats, y=1.25)
+print(mean(ds[,"pcb118"]))
+print(sd(ds[,"pcb118"]))
+print(var(ds[,"pcb118"]))
+
+boxplot(ds[,"pcb138"], main="Boxplot for PCB138", horizontal=T, axes=F, staplewex=1)
+text(x=boxplot.stats(ds[,"pcb138"])$stats, labels=boxplot.stats(ds[,"pcb138"])$stats, y=1.25)
+mean(ds[,"pcb138"])
+sd(ds[,"pcb138"])
+var(ds[,"pcb138"])
+
+boxplot(ds[,"pcb180"], main="Boxplot for pcb180", horizontal=T, axes=F, staplewex=1)
+text(x=boxplot.stats(ds[,"pcb180"])$stats, labels=boxplot.stats(ds[,"pcb180"])$stats, y=1.25)
+print(mean(ds[,"pcb180"]))
+print(sd(ds[,"pcb180"]))
+print(var(ds[,"pcb180"]))
+
+plot(pcb, pcb52, main="PCB and PCB52", xlab="PCB", ylab="PCB52")
+abline(lm(pcb52~pcb), col="red")
+corrCoeff <- cor(pcb,pcb52)
+text(labels = paste("Correlation Coefficient = ", corrCoeff), x=100.25, y=8.25)
+
+# ^ repeat for all values 
+
+#11.43
+fm <- lm(pcb ~ pcb52 + pcb118 + pcb138 + pcb180)
+fm
+summary(fm)
+
+res <- residuals(fm)
+res
+stem(res)
+
+#11.45 
+fm <- lm(pcb ~ pcb52 + pcb118 + pcb138)
+fm
+summary(fm)
+
+res <- residuals(fm)
+res
+stem(res)
+
+#11.46
+fm <- lm(ds[,"teq"] ~ ds[,"teqpcb"] + ds[,"teqdioxin"] + ds[,"teqfuran"])
+fm
+summary(fm)
+
+res <- residuals(fm)
+res
+stem(res)
+
+#11.47
+fm <- lm(teq ~ pcb52 + pcb118 + pcb138 + pcb180)
+fm
+summary(fm)
+
+res <- residuals(fm)
+res
+stem(res)
+
+#11.48
+boxplot(dslog[,"pcb118"], main="Boxplot: PCB118", horizontal=T, axes=F, staplewex=1)
+print(summary(dslog[,"pcb118"]))
+#repeat for each pcb value
+
+#11.49
+for (i in pcblist) {
+  for(j in pcblist) {
+    if(i < j)
+    {
+      corrCoeff <- cor(dslog[,i],dslog[,j])
+      plot(dslog[,i], dslog[,j], main=paste(i, " and ", j, " -- Correlation Coefficient = ", corrCoeff), xlab=i, ylab=j)
+      abline(lm(dslog[,j]~dslog[,i]), col="red")
+    }
+  }
+}
+
+#11.50
+datasets <- c("pcb28", "pcb52", "pcb118", "pcb126", "pcb138", "pcb153", "pcb180")
+permutations <- combn(datasets, 2) # use this to determine best multiple regression
+for (i in 1:21)
+{
+  print(paste(permutations[1,i], permutations[2,i]))
+  print(summary(lm(dslog[,"pcb"] ~ dslog[,permutations[1,i]] + dslog[,permutations[2,i]])))
+}
+

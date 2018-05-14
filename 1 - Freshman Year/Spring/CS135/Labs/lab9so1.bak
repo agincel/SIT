@@ -1,0 +1,57 @@
+#lang eopl
+
+
+(define cycle6 '((1 2) (2 3) (3 4) (4 5) (5 6) (6 1)))
+(define david '((1 3) (3 1) (2 4) (4 2) (3 5) (5 3) (4 6) (6 4) (5 1) (1 5) (6 2) (2 6)))
+(define study '((1 6) (2 2) (2 3) (3 1) (4 1) (5 1) (5 6) (6 5)))
+(define test '((1 2) (2 3) (2 1) (3 3) (4 5) (5 2)))
+
+
+(define (composite relationOuter relationInner)
+  (make-set (Composite relationOuter relationInner)))
+
+(define (Composite relationOuter relationInner)
+  (if (null? relationInner)
+      '()
+      (append (addDuples (car relationInner) relationOuter)
+            (Composite relationOuter (cdr relationInner)))))
+
+(define (addDuples duple list-of-duples)
+  (if (null? list-of-duples)
+      '()
+      (if (equal? (cadr duple) (caar list-of-duples))
+          (cons (list (car duple) (cadar list-of-duples))
+                (addDuples duple (cdr list-of-duples)))
+          (addDuples duple (cdr list-of-duples)))))
+
+;Here it is as a single procedure that nests lists:
+;"if"-version rather than "cond" with a launcher
+(define (compose relationOuter relationInner)
+  (make-set (Compose relationOuter relationOuter relationInner)))
+
+(define (Compose pristineOuter relationOuter relationInner)
+  (if (null? relationInner)
+      '()
+      (if (null? relationOuter)
+          (Compose pristineOuter pristineOuter (cdr relationInner))
+          (if (equal? (cadar relationInner) (caar relationOuter))
+              (cons (list (caar relationInner) (cadar relationOuter))
+                    (Compose pristineOuter 
+                             (cdr relationOuter) 
+                             relationInner))
+              (Compose pristineOuter 
+                             (cdr relationOuter) 
+                             relationInner)))))
+
+
+;--------------
+
+(define (power relation k)
+  (Power relation (- k 1) k))
+
+(define (Power relation power-so-far k-index)
+  (if (not (= power-so-far 0))
+      (Power (compose relation relation) (- power-so-far 1) k-index)
+      relation
+      )
+  )

@@ -1,0 +1,29 @@
+Final Project Info
+
+UML:
+
+
+----------------------------------------------
+Diagram
+----------------------------------------------
+-rooms: Room[]		|	-Room
+-edges: ?			|---------
+-heroes: Hero[]		|+name: string
++listRooms(): void	|+monster: string
++listHalls(): void	|+strength: uint
++bfs(): void		|+treasure: uint
++dfs(): void		|
++mst(): void
+[maxCostST] (prim's)
+
+Edges = Halls
+Weight - pizza capacity
+
+
+				|	-Hero
+				|----------
+				|+name: String
+				|+strength: uint
+				|+HP: uint
+				|+static cash:uint
+				|
